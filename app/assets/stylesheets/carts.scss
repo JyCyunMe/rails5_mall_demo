@@ -1,0 +1,22 @@
+// Place all the styles related to the carts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table th {
+  min-width: 100px;
+}
+
+.btn.btn-clear {
+  border: 1px solid #881717c9;
+  border-radius: 6px;
+  background-color: #ff1722bf;
+  color: #110b0bd6;
+  //margin-top: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  line-height: 13px;
+}
+
+a {
+  color: #055;
+}

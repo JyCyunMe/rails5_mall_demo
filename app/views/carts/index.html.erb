@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>购物车总览</h1>
+
+<table border="1px solid #ccc" style="text-align: center;">
+  <thead>
+    <tr>
+      <th>购物车ID</th>
+      <th>商品数量</th>
+      <th>商品总价</th>
+      <th colspan="3">操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @carts.each do |cart| %>
+      <tr>
+        <td><%= cart.id %></td>
+        <td><%= cart.cart_items.count %></td>
+        <td>
+
+          <% cart_items_total = 0 %>
+          <%#= cart.cart_items.map { |product| cart_items_total += product.price } %>
+          <%#= cart_items_total %>
+          <%#= eval cart.cart_items.each.product.price.join('+')%>
+          <% cart.cart_items.each do |cart_item| %>
+          <% cart_items_total += cart_item.product.price %>
+          <% end %>
+          <%= number_to_currency cart_items_total, precision: 2, unit: '￥', strip_insignificant_zeros: true %>
+        </td>
+        <td><%= link_to 'Show', cart %></td>
+        <td><%= link_to 'Edit', edit_cart_path(cart) %></td>
+        <td><%= link_to 'Destroy', cart, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cart', new_cart_path %>

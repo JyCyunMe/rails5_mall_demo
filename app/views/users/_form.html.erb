@@ -1,0 +1,55 @@
+<%= form_with(model: user, local: true, url: register_path(@user)) do |form| %>
+  <% if user.errors.any? %>
+      <div id="error_explanation">
+        <h2>您有<%= user.errors.count %>个条件不符合：</h2>
+        <!--      <h2>您有<%#= pluralize(user.errors.count, "个条件") %>不符合</h2>-->
+
+        <ul>
+          <%# user.errors.full_messages.each do |message| %>
+          <!--        <li><%#= message %></li>-->
+          <%# end %>
+          <% user.errors.messages.each do |message| %>
+            <li><%= message[1][0] %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-horizontal">
+    <div class="form-group field">
+      <%= form.label :user_name, '用户名' %>
+      <% if type == 'register' %>
+        <%= form.text_field :user_name, :size => 10, class: 'form-control' %>
+      <% else %>
+        <%= form.text_field :user_name, :size => 10, class: 'form-control', disabled: 'disabled' %>
+      <% end %>
+    </div>
+
+    <div class="form-group field">
+      <%= form.label :email, '邮箱' %>
+      <%= form.text_field :email, :size => 50, class: 'form-control' %>
+    </div>
+
+    <div class="form-group field">
+      <%= form.label :password, '密码' %>
+      <%= form.password_field :password, :size => 20, class: 'form-control' %>
+    </div>
+
+    <div class="form-group field">
+      <%= form.label :password_confirmation, '重复密码' %>
+      <%= form.password_field :password_confirmation, :size => 20, class: 'form-control' %>
+    </div>
+
+    <div class="form-inline">
+      <div class="form-group field">
+        <%= rucaptcha_input_tag(class: 'form-control', placeholder: '请输入验证码', style: 'width: 40%;') %>
+        <%= rucaptcha_image_tag(alt: '点击刷新验证码', style: 'width: 30%; margin-left: 20px;', onclick: 'this.src=this.src+"?"+Math.random()') %>
+      </div>
+    </div>
+
+    <div class="form-group" style="margin-top: 10px;">
+      <%= form.submit type == 'register' ? '注册' : '保存', class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

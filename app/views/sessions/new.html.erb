@@ -1,0 +1,63 @@
+<%= stylesheet_link_tag 'login/style', media: 'screen' %>
+<%= stylesheet_link_tag 'login/reset' %>
+
+<div id="particles-js">
+  <div class="login">
+    <div class="bs-callout-div">
+      <% if flash[:alert] %>
+        <p class="bs-callout bs-callout-danger"><%= flash[:alert] %></p>
+      <% end %>
+      <% if flash[:notice] %>
+        <p class="bs-callout bs-callout-info"><%= flash[:notice] %></p>
+      <% end %>
+    </div>
+    <div class="login-top">
+      <b>登录到 X-Mall</b>
+    </div>
+
+    <%= form_tag do %>
+
+    <div class="login-center clearfix">
+      <div class="login-center-img"><%= image_tag 'login/name.png' %></div>
+      <div class="login-center-input">
+        <%= text_field_tag :identification, params[:identification], placeholder: '请输入您的用户名/Email', onfocus: "this.placeholder=''", onblur: "this.placeholder='请输入您的用户名/Email'" %>
+        <div class="login-center-input-text">用户名/Email</div>
+      </div>
+    </div>
+    <div class="login-center clearfix">
+      <div class="login-center-img"><%= image_tag 'login/password.png' %></div>
+      <div class="login-center-input">
+          <%= password_field_tag :password, params[:password], placeholder: '请输入您的密码', onfocus: "this.placeholder=''", onblur: "this.placeholder='请输入您的密码'" %>
+        <div class="login-center-input-text">密码</div>
+      </div>
+    </div>
+    <div class="login-center clearfix">
+      <div class="form-group">
+        <div class="login-center-input" style="width: 120px; margin-left: 35px; margin-right: 10px;">
+          <%= rucaptcha_input_tag class: '', placeholder: '请输入验证码', onfocus: "this.placeholder=''", onblur: "this.placeholder='请输入验证码'" %>
+          <div class="login-center-input-text">验证码</div>
+        </div>
+        <div class="login-center-img" style="width: 100px; margin-top: -5px;">
+          <%= rucaptcha_image_tag alt: '点击刷新验证码', onclick: 'this.src=this.src+"?"+Math.random()'  %>
+        </div>
+      </div>
+    </div>
+    <div class="login-button">
+    <%= submit_tag '登录', style: 'outline: none; border: none; background-color: transparent; color: white;' %>
+    </div>
+
+
+    <div class="login-bottom">
+      &copy; 2020 JyCyun
+    </div>
+
+    <% end %>
+  </div>
+  <div class="sk-rotating-plane"></div>
+  <canvas class="particles-js-canvas-el" style="width: 100%; height: 100%;" width="1295" height="319"></canvas>
+</div>
+
+
+<%= javascript_include_tag 'login/particles.min' %>
+<%= javascript_include_tag 'login/app' %>
+

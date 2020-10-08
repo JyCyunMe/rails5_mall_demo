@@ -1,0 +1,135 @@
+// Place all the styles related to the mall controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.box {
+  text-align: center;
+  background-color: #000;
+  border-radius: 20px;
+  box-shadow: #999999cf 2.5px 3px;
+}
+.box_item {
+  color: #666;
+  padding: 12px;
+}
+.item_image {
+  border-radius: 10px;
+}
+.btn_add_to_cart {
+  border: none;
+  border-radius: 6px;
+  background-color: #ff1722bf;
+  color: #110b0b;
+  margin-top: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+//Float Button
+.button.type1 {
+  color:#fff;
+}
+.button.type1.type1::after,.button.type1.type1::before {
+  content:"";
+  display:block;
+  position:absolute;
+  width:20%;
+  height:20%;
+  border:2px solid;
+  transition:all 0.6s ease;
+  border-radius:2px;
+}
+.button.type1.type1::after {
+  bottom:0;
+  right:0;
+  border-top-color:transparent;
+  border-left-color:transparent;
+  //border-bottom-color:#566473;
+  //border-right-color:#566473;
+  border-bottom-color:#eee;
+  border-right-color:#eee;
+}
+.button.type1.type1::before {
+  top:0;
+  left:0;
+  border-bottom-color:transparent;
+  border-right-color:transparent;
+  //border-top-color:#566473;
+  //border-left-color:#566473;
+  border-top-color:#eee;
+  border-left-color:#eee;
+}
+.button.type1.type1:hover:after,.button.type1.type1:hover:before {
+  width:100%;
+  height:100%;
+}
+
+/* ----- Cart Modal ----- */
+.modal.left .modal-dialog,
+.modal.right .modal-dialog {
+  position: fixed;
+  margin: auto;
+  width: 500px;
+  height: 100%;
+  -webkit-transform: translate3d(0%, 0, 0);
+  -ms-transform: translate3d(0%, 0, 0);
+  -o-transform: translate3d(0%, 0, 0);
+  transform: translate3d(0%, 0, 0);
+}
+
+.modal.left .modal-content,
+.modal.right .modal-content {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.modal.left .modal-body,
+.modal.right .modal-body {
+  padding: 15px 15px 80px;
+}
+
+///*Left*/
+//.modal.left.fade .modal-dialog{
+//  left: -320px;
+//  -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+//  -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+//  -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+//  transition: opacity 0.3s linear, left 0.3s ease-out;
+//}
+//
+//.modal.left.fade.in .modal-dialog{
+//  left: 0;
+//}
+//
+/*Right*/
+//.modal.right.fade .modal-dialog {
+//  right: -320px;
+//  -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+//  -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+//  -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+//  transition: opacity 0.3s linear, right 0.3s ease-out;
+//}
+//
+.modal.right.fade .modal-dialog {
+  right: 0;
+}
+
+/* ----- MODAL STYLE ----- */
+.modal-content {
+  border-radius: 0;
+  border: none;
+}
+
+.modal-header {
+  border-bottom-color: #EEEEEE;
+  background-color: #FAFAFA;
+}
+
+.modal-backdrop {
+  background-color: transparent;
+}
+
+:root {
+  --animate-duration: 0.5s;
+  --animate-delay: 50ms;
+}

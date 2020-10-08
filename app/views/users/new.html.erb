@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4 m-auto">
+      <fieldset>
+        <legend>注册</legend>
+        <%= render 'form', user: @user, type: 'register' %>
+
+      </fieldset>
+      <%= link_to '已有账号？立即登录', login_path %><br>
+      <%= link_to '返回首页', mall_path %>
+
+      <div class="form-group">
+      </div>
+
+    </div>
+  </div>
+</div>

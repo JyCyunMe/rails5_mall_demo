@@ -1,0 +1,50 @@
+<% unless cart && cart.cart_items.count > 0 %>
+  <h3>购物车暂无商品，快去逛逛吧</h3>
+<% else %>
+  <style>
+      .table-bordered td {
+          padding: 0 !important;
+          vertical-align: middle;
+          text-align: center;
+      }
+      .btn-min {
+          border: 1px solid #333 !important;
+          background-color: #773c084d;
+          border-radius: 6px;
+      }
+      .btn-min-clear {
+          border: 1px solid #333 !important;
+          border-radius: 6px;
+      }
+  </style>
+  <table class="table table-bordered table-hover m-auto">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>名称</th>
+      <th>图片</th>
+      <th>单价</th>
+      <th>数量</th>
+      <th>总价</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <%= render cart.cart_items %>
+
+    <tr>
+      <td colspan="2">总数量：<%= cart.total_count %></td>
+      <td colspan="3">总金额：<%= number_to_currency cart.total_price, precision: 2, unit: '￥', strip_insignificant_zeros: true %></td>
+      <td colspan="2"><%= button_to '清空购物车', cart_clear_path(cart_id: cart.id), method: :delete, data: {
+          swal: {
+              text: '您确定要清空吗？',
+              type: 'question',
+              confirm_button_class: 'btn btn-default',
+              confirm_button_text: '是的',
+              cancel_button_text: '算了',
+          }}, class: 'btn-min-clear' %></td>
+    </tr>
+    </tbody>
+  </table>
+<% end %>

@@ -1,0 +1,31 @@
+
+  <tr>
+    <td><%= cart_item.id %></td>
+    <td><%= cart_item.product.title %></td>
+    <td><%= image_tag cart_item.product.image_url, :size => '120x80' %></td>
+    <td><%= cart_item.product.price %></td>
+    <td><%= cart_item.count %></td>
+    <td>
+
+      <%#= cart.cart_items.map { |product| cart_items_total += product.price } %>
+      <%#= cart_items_total %>
+      <%#= eval cart.cart_items.each.product.price.join('+')%>
+
+      <%# cart.cart_items.each do |cart_item| %>
+      <%# cart_items_total += cart_item.product.price %>
+      <%# end %>
+      <%= number_to_currency cart_item.total_price, precision: 2, unit: '￥', strip_insignificant_zeros: true %>
+    </td>
+    <!--      <td><%#= link_to 'Show', cart %></td>-->
+    <!--      <td><%#= link_to 'Edit', edit_cart_path(cart) %></td>-->
+    <td>
+      <% if @is_ajax %>
+        <%= button_to '删除', cart_items_delete_post_path(product_id: cart_item.product.id), method: :post, remote: true, class: 'btn-min' %>
+      <% else %>
+        <%= button_to '删除', cart_items_delete_path(product_id: cart_item.product.id), method: :delete, remote: @is_ajax || false %>
+      <% end %>
+    </td>
+  </tr>
+
+
+

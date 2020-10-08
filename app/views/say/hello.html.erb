@@ -1,0 +1,19 @@
+<h1>Hello Ruby on Rails</h1>
+<h5><%= 1+2 %></h5>
+<h5><%= "a"+"b" %></h5>
+<h5><%= 1.hour.from_now %></h5>
+<p>
+  <% for file in @files %>
+    filename is <%= file %><br>
+  <% end %>
+</p>
+<hr>
+<p>
+  <% @files.each { |file| %>
+    filename is <%=  file  %><br>
+  <% } %>
+</p>
+<p>Find me in app/views/say/hello.html.erb</p>
+<p>to <%= link_to "goodbye", say_goodbye_path %></p>
+<br>
+<p>Now time is <%= @time %></p>

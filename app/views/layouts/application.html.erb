@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>MallDemo</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <!--  Bootstrap v4.5.2 CSS  -->
+  <%#= stylesheet_link_tag 'bootstrap/bootstrap.min', media: 'all' %>
+  <!--    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">-->
+
+  <!--  jQuery v1.12.4 JS -->
+  <%#= javascript_include_tag 'jquery/jquery.min', 'data-turbolinks-track': 'reload' %>
+  <!--  Bootstrap v4.5.2 JS -->
+  <%#= javascript_include_tag 'bootstrap/bootstrap.min', 'data-turbolinks-track': 'reload' %>
+  <!--    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag params[:controller], media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag params[:controller], media: 'all', 'data-turbolinks-track': 'reload' %>
+
+</head>
+
+<body>
+
+<%= yield %>
+
+<% unless @dont_use_footer %>
+  <div class="container">
+    <div class="row footer">
+      <div class="col-md-12" style="text-align: left; height: 60px; border-top: #055 2px solid; padding-top: 18px;">
+        <div style="width: 50%; float: left;">
+          <span class="logo-top">&nbsp;&nbsp;&copy; 2020 JyCyun.xyz&nbsp;&nbsp;<br></span>
+          <span class="logo-hr">
+            <i class="logo-bottom">&nbsp;&nbsp;Powered by Ruby on Rails 5&nbsp;&nbsp;</i>
+          </span>
+        </div>
+        <p style="width: 50%; margin-top: 8px; float: right; text-align: right; font-style: normal; font-size: 13px;">
+          <b><a>网站地图</a> | <a>关于我们</a> | <a style="margin-right: -4px;">联系我们</a></b>
+        </p>
+      </div>
+    </div>
+  </div>
+<% end %>
+</body>
+</html>

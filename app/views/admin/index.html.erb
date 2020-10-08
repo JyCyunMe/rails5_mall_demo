@@ -1,0 +1,6 @@
+<h1>欢迎进入 管理后台</h1>
+<p>现在是北京时间<%= Time.now.in_time_zone(+8).strftime("%Y/%m/%d %H:%M:%S.%U %a") %></p>
+<p>目前共有 <%= @total_orders %> 个订单</p>
+
+<br>
+<p><%= link_to '注销', logout_url, :method => :delete %></p>

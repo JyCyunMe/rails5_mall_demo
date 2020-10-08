@@ -1,0 +1,90 @@
+<div class="container">
+  <% if notice %>
+    <script type="application/javascript">
+        $(function () {
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                type: 'info',
+                title: '<%= notice %>'
+            })
+        });
+    </script>
+  <% end %>
+
+  <div class="row" style="border-bottom: #055 2px solid;">
+    <div class="col-md-3 offset-md-4 m-auto" style="text-align: center">
+      <div class="form-group">
+        <h1 style="margin-top: 20px;">X-Mall</h1>
+        <div style="font-size: 14px; margin: -6px;">
+          <% if session[:user_id] %>
+            <p><%= link_to "#{ session[:user_id]['user_name'] } (uid: #{ session[:user_id]['id'] })", user_path(id: session[:user_id]['id']) %>
+              | <%= link_to '注销', logout_url, :method => :delete %></p>
+          <% else %>
+            <p><%= link_to '还没有账号？', register_url %> | <%= link_to '登录', login_url %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" id="products" style="margin-top: 20px;">
+    <% @products.each do |product| %>
+      <div class="col-md-3 m-auto box" style="border: #863e13 1px solid;">
+        <div class="box_item">
+          <%= image_tag product.image_url, :size => '150x100', class: 'item_image' %>
+          <h3><%= product.title %></h3>
+          <%= sanitize product.description %>
+          <div class="price_line">
+            <span class="price">
+              <%= number_to_currency product.price, precision: 2, unit: '￥', strip_insignificant_zeros: true %>
+            </span>
+          </div>
+          <div class="count_line">
+            <span class="count">
+              库存：<%= product.count > 99 ? '充足' : product.count %>
+            </span>
+          </div>
+          <%= button_to '加入购物车', cart_items_add_path(:product_id => product.id), class: 'btn_add_to_cart', remote: true %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div id="refresh-cart" style="display: none;">
+    <%= button_to '', cart_items_refresh_path(), remote: true %>
+  </div>
+  <script type="application/javascript">
+      $(function () {
+          ajaxBind('#products', undefined, undefined, function () {
+              $('#refresh-cart input').trigger("click");
+          });
+      })
+  </script>
+
+  <a href="javascript:;" class="btn btn-danger button type1" style="position: fixed;bottom: 6rem;right: 0.5rem;z-index: 9999;"
+     data-toggle="modal" data-target="#myModal"><i class="fa fa-shopping-cart"></i> <span>购物车</span></a>
+</div>
+
+
+<div class="modal right fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content animate__animated animate__fadeInRight">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">购物车</h4>
+      </div>
+      <div class="modal-body">
+        <% if session[:user_id] %>
+          <div id="cart" style="margin: -10px;">
+            <%= render @cart %>
+          </div>
+        <% else %>
+          <p>请先<%= link_to '登录', login_path %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

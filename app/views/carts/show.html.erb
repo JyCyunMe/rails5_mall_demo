@@ -1,0 +1,73 @@
+<div class="container">
+  <% if notice %>
+    <script type="application/javascript">
+        $(function () {
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                type: 'info',
+                title: '<%= notice %>'
+            })
+        });
+    </script>
+  <% end %>
+
+  <div class="row">
+    <% unless @cart && @cart.cart_items.count > 0 %>
+      <div class="col-md-10 offset-md-1 m-auto" style="text-align: center">
+        <h1>购物车</h1>
+        <h5>购物车暂无商品，快去 <%= link_to '逛逛', mall_url %> 吧</h5>
+      </div>
+    <% else %>
+      <div class="col-md-10 offset-md-1 m-auto" style="text-align: center">
+        <h1>购物车</h1>
+        <style>
+          .table-bordered td {
+              vertical-align: middle;
+          }
+        </style>
+        <table class="table table-bordered table-striped" style="vertical-align: middle !important;">
+          <thead>
+          <tr>
+            <th>商品ID</th>
+            <th>商品名称</th>
+            <th>商品图片</th>
+            <th>商品单价</th>
+            <th>商品数量</th>
+            <th>商品总价</th>
+            <th>操作</th>
+          </tr>
+          </thead>
+
+          <tbody>
+
+          <%= render @cart.cart_items %>
+
+            <tr>
+              <td colspan="3">总数量：<%= @cart.total_count %></td>
+              <td colspan="3">总金额：<%= number_to_currency @cart.total_price, precision: 2, unit: '￥', strip_insignificant_zeros: true %></td>
+              <td colspan="1"><%= button_to '清空购物车', cart_clear_path(cart_id: @cart.id), method: :delete, data: {
+                  swal: {
+                      text: '您确定要清空吗？',
+                      type: 'question',
+                      confirm_button_class: 'btn btn-default',
+                      confirm_button_text: '是的',
+                      cancel_button_text: '算了',
+                  }}, class: 'btn btn-clear', id: 'clear-cart' %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <script type="application/javascript">
+          $(function () {
+              ajaxBind('#clear-cart');
+          })
+      </script>
+      <div class="col-md-2 offset-md-1">
+        <%= link_to '返回首页', mall_url %>
+      </div>
+    <% end %>
+  </div>
+</div>
