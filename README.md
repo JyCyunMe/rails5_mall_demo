@@ -2,6 +2,8 @@
 
 一个基于《Agile Web Development with Rails 5》完成的demo。
 
+说明：包含开发环境数据的development.sqlite3已提交，无需执行迁移。
+
 ## 完成功能：
 
 * 首页 /
